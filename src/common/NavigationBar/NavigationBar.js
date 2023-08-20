@@ -19,7 +19,7 @@ function NavigationBar() {
           <IconButton edge="start" color="inherit" aria-label="logo">
             <ShoppingCartIcon />
           </IconButton>
-          <Typography variant="h6">upGrad Eshop</Typography>
+          <Typography variant="h6">UpGrad Eshop</Typography>
         </div>
 
         <div className="auth-links">
