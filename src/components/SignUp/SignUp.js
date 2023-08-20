@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from '@material-ui/core';
-import './Signup.css';
+import './SignUp.css';
 import { Input, InputAdornment, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
