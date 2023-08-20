@@ -169,7 +169,7 @@ function Signup() {
             />
           </div>
           <div className="input-container">
-            <span className="icon">🔑</span>
+            <span className="icon">👤 </span>
             <select
               className="role-select"
               value={role}
