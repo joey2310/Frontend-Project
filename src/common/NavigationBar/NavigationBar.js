@@ -6,10 +6,12 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 import { AuthContext } from '../AuthContext/AuthContext';
+import SearchBar from '../SearchBar/SearchBar';
 
 
 function NavigationBar() {
-  const { user, isAuthenticated, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  console.log(!!user);
 
 
   return (
@@ -19,14 +21,22 @@ function NavigationBar() {
           <IconButton edge="start" color="inherit" aria-label="logo">
             <ShoppingCartIcon />
           </IconButton>
-          <Typography variant="h6">UpGrad Eshop</Typography>
+          <Typography variant="h6">upGrad Eshop</Typography>
         </div>
-
+        <div className='nav-links auth-links'>
+          <Link to="/">Home</Link>
+          <Link to="/products">Products</Link>
+          {user && user.isAdmin && (
+            <Link to="/add-product">Add Products</Link>
+          )
+          }
+        </div>
+        <SearchBar />
         <div className="auth-links">
-          {isAuthenticated ? (
+          {user ? (
             <>
-
-              <IconButton color="inherit" aria-label="logout" onClick={logout}>
+              <span>Welcome, {user.name}</span>
+              <IconButton color="inherit" aria-label="logout" className='logout' onClick={logout}>
                 <ExitToAppIcon />
               </IconButton>
             </>

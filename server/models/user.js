@@ -35,7 +35,6 @@ const User = mongoose.model(
       type: String,
       enum: [ADMIN, USER],
       default: USER,
-      required: true,
     },
     contactNumber: {
       type: Number,
@@ -52,7 +51,7 @@ const validateUser = (user) => {
     password: Joi.string().min(5).max(50).required(),
     email: Joi.string().email().min(5).max(255).required(),
     contactNumber: Joi.string().min(10).max(10).required(),
-    role : Joi.string().min(0).max(50).required(),
+    role: Joi.string().min(0).max(10).required(),
   });
 
   const validationResult = userSchema.validate(user);

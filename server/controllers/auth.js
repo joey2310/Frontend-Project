@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { User, validateUser } = require("./../models/user");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
-const { AUTH_TOKEN, ADMIN, USER } = require("../constants");
+const { AUTH_TOKEN, ADMIN } = require("../constants");
 
 async function signIn(req, res) {
   console.log(req.body);
@@ -25,7 +25,7 @@ async function signIn(req, res) {
     {
       _id: user._id,
       name: `${user.firstName} ${user.lastName}`,
-      isAdmin: user.role === ADMIN,
+      isAdmin: user.role === 'admin',
     },
     "1@3456Qw-"
   );
@@ -33,7 +33,7 @@ async function signIn(req, res) {
     name: `${user.firstName} ${user.lastName}`,
     email: user.email,
     isAuthenticated: true,
-    isAdmin: user.role,
+    isAdmin: user.role === 'admin',
   });
 }
 
@@ -65,7 +65,6 @@ async function signUp(req, res) {
       password: await bcrypt.hash(req.body.password, salt),
     });
 
-    user.role = req.body.role;
 
     const response = await user.save();
     res.send(_.pick(response, ["firstName", "lastName", "email", "_id","role"]));

@@ -30,9 +30,9 @@ function Login() {
         }),
       })
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
           console.log(data);
-          login(data);
+          await login(data);
           
           // data.isAdmin ? setAdmin() : login(userData);
           navigate('/products');
