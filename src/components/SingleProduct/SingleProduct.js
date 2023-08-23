@@ -5,11 +5,15 @@ import { IconButton, Typography, Input } from '@material-ui/core';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { useNavigate } from 'react-router-dom';
+import { useEventContext } from '../../common/EventContext/EventContext';
+
+
 
 function SingleProduct() {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const { setEvent } = useEventContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,7 +24,6 @@ function SingleProduct() {
         try {
             const response = await fetch(`http://localhost:3001/api/v1/products/${id}`);
             const data = await response.json();
-            console.log(data);
             setProduct(data);
         } catch (error) {
             console.error('Error fetching product details:', error);
@@ -40,7 +43,17 @@ function SingleProduct() {
     };
 
     const handleOnClick = () => {
-        navigate(`/create-order`);
+        if (product.availableItems === 0) {
+            setEvent({
+                isEvent: true,
+                type: 'error',
+                message: 'Out of Stock'
+            })
+
+        }
+        else {
+            navigate(`/create-order`, { state: { ...product, quantity } });
+        }
     }
 
     if (!product) {
@@ -64,9 +77,10 @@ function SingleProduct() {
                         <p>{product.description}</p>
                         <p>Manufacturer: {product.manufacturer}</p>
                         <div className='product__quantity'>
+                            <Typography variant='inherit'> Quantity:</Typography>
                             <IconButton onClick={handleRemoveQuantity}>
                                 <RemoveOutlinedIcon />
-                            </IconButton>
+                            </IconButton> 
                             <Input
                                 type="text"
                                 label="Quantity"
@@ -79,7 +93,7 @@ function SingleProduct() {
                             </IconButton>
                         </div>
                         {/* Other product details */}
-                        <button onClick={handleOnClick}  className="buy-now-button">Place Order</button>
+                        <button onClick={handleOnClick} className="buy-now-button">Place Order</button>
                     </div>
                 </div>
             </div>

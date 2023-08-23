@@ -1,70 +1,71 @@
 .products-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin: 2em;
-  }
-  
-  .product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #ccc;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-card h3 {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  
-  .product-card p {
-    margin: 5px 0;
-  }
-  
-  .product-card p:first-of-type {
-    font-weight: bold;
-  }
-  
- 
-  
-  
-  
-  .product-image img {
-    width: -webkit-fill-available;
-    height: 250px;
-  }
-  
-  .price {
-    font-weight: bold;
-    color: #3f51b5;
-  }
-  
-  .product__content {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .icon__color{
-    color: #3f51b5;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 2em;
+}
 
-  .product-image img {
-    width: 200px;
-    height: 200px;
-  }
-  
-  
-  
-  
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #ccc;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.product-card p {
+  margin: 5px 0;
+}
+
+.product-card p:first-of-type {
+  font-weight: bold;
+}
+
+.sorting-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+
+
+.product-image img {
+  width: -webkit-fill-available;
+  height: 250px;
+}
+
+.price {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.product__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon__color {
+  color: #3f51b5;
+}
+
+
+.product-image img {
+  width: 200px;
+  height: 200px;
+}

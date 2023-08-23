@@ -4,6 +4,8 @@ import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
 import './Products.css';
 import { AddShoppingCart } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import { useEventContext } from '../../common/EventContext/EventContext';
+
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -12,6 +14,8 @@ function Products() {
   const [sortOption, setSortOption] = useState('default');
   const navigate = useNavigate();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const { setEvent } = useEventContext();
+
 
   // Fetch categories on component mount
   useEffect(() => {
@@ -29,7 +33,11 @@ function Products() {
       setCategories(data);
       setSelectedCategory('all');
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      setEvent({
+        isEvent: true,
+        type: 'error',
+        message: error
+      })
     }
   };
 
@@ -43,6 +51,11 @@ function Products() {
       setFilteredProducts(data);
     } catch (error) {
       console.error('Error fetching products:', error);
+      setEvent({
+        isEvent: true,
+        type: 'error',
+        message: error
+      })
     }
   };
 
@@ -98,35 +111,50 @@ function Products() {
 
   return (
     <div>
-      <h2>Products Page</h2>
-      <ToggleButtonGroup value={selectedCategory} exclusive onChange={handleCategoryChange}>
-        <ToggleButton value="all">All</ToggleButton>
-        {categories.map((category) => (
-          <ToggleButton key={category} value={category}>
-            {category}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+      <h2>Products Details</h2>
+      <div className='sorting-div'>
+        <div>
+          <Typography variant='subtitle1'>Categories</Typography>
+          <ToggleButtonGroup value={selectedCategory} exclusive onChange={handleCategoryChange}>
+            <ToggleButton value="all">All</ToggleButton>
+            {categories.map((category) => (
+              <ToggleButton key={category} value={category}>
+                {category}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </div>
 
-      <ToggleButtonGroup value={sortOption} exclusive onChange={handleSortChange}>
-        <ToggleButton value="default">Default</ToggleButton>
-        <ToggleButton value="priceHighToLow">Price High to Low</ToggleButton>
-        <ToggleButton value="priceLowToHigh">Price Low to High</ToggleButton>
-        <ToggleButton value="newest">Newest</ToggleButton>
-      </ToggleButtonGroup>
+        <div>
+          <Typography variant='subtitle1'>Filters</Typography>
+          <ToggleButtonGroup value={sortOption} exclusive onChange={handleSortChange}>
+            <ToggleButton value="default">Popularity</ToggleButton>
+            <ToggleButton value="priceHighToLow">Price High to Low</ToggleButton>
+            <ToggleButton value="priceLowToHigh">Price Low to High</ToggleButton>
+            <ToggleButton value="newest">Newest</ToggleButton>
+          </ToggleButtonGroup>
+        </div>
+      </div>
 
       <div className="products-container">
         {filteredProducts.map((product) => (
-          <Card onClick={()=> handleCardClicked(product._id)} key={product._id} className="product-card">
+          <Card onClick={() => handleCardClicked(product._id)} key={product._id} className="product-card">
             <CardContent>
               <div className="product-image">
                 <img src={product.imageURL} alt={product.name} />
               </div>
               <div className='product__content'>
-                  <Typography variant='h3'>{product.name}</Typography>
-                  <Typography variant='inherit' className='price'>Price: ${product.price}</Typography>
-                 
-                  {/* Other product details */}
+                <Typography variant='h3'>{product.name}</Typography>
+                <Typography variant='inherit' className='price'>Price: &#x20B9;{product.price}</Typography>
+                {
+                  product.availableItems === 0 ?
+                    <Typography variant='body2' style={{ color: 'red' }}>Out of Stock</Typography> :
+                    product.availableItems !== 0 && product.availableItems < 7 ? < Typography variant='body2' style={{ color: 'red' }}>Few items left</Typography> : null
+
+                }
+
+
+                {/* Other product details */}
                 {/* <div>
                   <IconButton aria-label="Add to Cart" className="icon-button"
                     onClick={() => handleAddToCartClick(product.id)} >
@@ -138,7 +166,7 @@ function Products() {
           </Card>
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 

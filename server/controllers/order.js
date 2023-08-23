@@ -3,6 +3,8 @@ const { Order } = require("../models/order");
 const { Product } = require("../models/product");
 
 async function createOrder(req, res) {
+
+    console.log(req.body.product);
    
     const product = await Product.findById(req.body.product);
 

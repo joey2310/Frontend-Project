@@ -11,30 +11,32 @@ import SearchBar from '../SearchBar/SearchBar';
 
 function NavigationBar() {
   const { user, logout } = useContext(AuthContext);
-  console.log(!!user);
-
 
   return (
     <AppBar position="static">
       <Toolbar className="nav-container">
-        <div className='logo'>
-          <IconButton edge="start" color="inherit" aria-label="logo">
-            <ShoppingCartIcon />
-          </IconButton>
-          <Typography variant="h6">upGrad Eshop</Typography>
+        <div className='logo-div'>
+          <Link to="/" className="no-decoration">
+            <div className='logo'>
+              <IconButton edge="start" color="inherit" aria-label="logo">
+                <ShoppingCartIcon />
+              </IconButton>
+              <Typography variant="h6">upGrad Eshop</Typography>
+            </div>
+          </Link>
+          <div className='nav-links auth-links'>
+            <Link to="/products">Products</Link>
+            {user && user.isAdmin && (
+              <Link to="/add-product">Add Products</Link>
+            )
+            }
+          </div>
         </div>
-        <div className='nav-links auth-links'>
-          <Link to="/">Home</Link>
-          <Link to="/products">Products</Link>
-          {user && user.isAdmin && (
-            <Link to="/add-product">Add Products</Link>
-          )
-          }
-        </div>
-        <SearchBar />
+        
         <div className="auth-links">
           {user ? (
             <>
+            <SearchBar />
               <span>Welcome, {user.name}</span>
               <IconButton color="inherit" aria-label="logout" className='logout' onClick={logout}>
                 <ExitToAppIcon />

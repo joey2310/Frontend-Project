@@ -1,28 +1,39 @@
 .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .nav-links {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .auth-links {
-    display: flex;
-    align-items: center;
-  }
-  
-  .auth-links a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    margin-left: 20px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.logo-div {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+.auth-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  margin-left: 20px;
+}

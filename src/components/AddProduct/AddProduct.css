@@ -1,0 +1,14 @@
+.add__product__button{
+    display: flex;
+    justify-content: center;
+}
+
+.add__product__form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.add__product{
+    width: 300px;
+}
