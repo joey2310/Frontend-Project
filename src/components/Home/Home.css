@@ -1,0 +1,19 @@
+.home__page, .home__page > h5{
+    padding: 1rem 0rem;
+}
+
+.h6{
+    padding: 1rem 0rem;
+    text-align: center ;
+}
+
+.category__button{
+    margin: 0 1rem !important;
+    border: 1px solid #3f51b5 !important;
+    color: black !important;
+    border-radius: 10px !important;
+}
+
+.button__class{
+    text-align: center;
+}

@@ -82,8 +82,8 @@ function Login() {
               label="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              placeholder='Email Address'
+              type="email"
+              placeholder='Email Address' required
             />
           </div>
           <div className="input-container">
@@ -108,6 +108,7 @@ function Login() {
                   </IconButton>
                 </InputAdornment>
               }
+              required
             />
           </div>
           <Button variant="contained" color="primary" type="submit">

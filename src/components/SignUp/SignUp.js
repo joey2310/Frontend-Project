@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from '@material-ui/core';
-import './SignUp.css';
+import './Signup.css';
 import { Input, InputAdornment, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +28,9 @@ function Signup() {
   const { setEvent } = useEventContext();
 
   const handleChange = (setState, e) => {
-    setState(e.target.value);
+    const inputValue = e.target.value;
+    const capitalizedValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    setState(capitalizedValue);
   };
 
   const handleClickShowPassword = () => {
@@ -145,7 +147,7 @@ function Signup() {
               value={email}
               type="email" // Use "email" type for email input
               placeholder='Email Address'
-              onChange={(e) => handleChange(setEmail, e)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-container">

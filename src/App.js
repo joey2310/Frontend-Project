@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useContext } from 'react';
 import Login from './components/Login/Login';
-import Signup from './components/SignUp/SignUp';
+import Signup from './components/Signup/Signup';
 import Home from './components/Home/Home';
 import NavigationBar from './common/NavigationBar/NavigationBar';
 import PrivateRoute from './common/PrivateRoute/PrivateRoute';
@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         style={{ top: "80px" }}
         open={event.isEvent}
         autoHideDuration={3000}

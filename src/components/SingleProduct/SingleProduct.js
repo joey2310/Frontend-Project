@@ -77,10 +77,9 @@ function SingleProduct() {
                         <p>{product.description}</p>
                         <p>Manufacturer: {product.manufacturer}</p>
                         <div className='product__quantity'>
-                            <Typography variant='inherit'> Quantity:</Typography>
                             <IconButton onClick={handleRemoveQuantity}>
                                 <RemoveOutlinedIcon />
-                            </IconButton> 
+                            </IconButton>
                             <Input
                                 type="text"
                                 label="Quantity"
